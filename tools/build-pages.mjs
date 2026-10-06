@@ -38,6 +38,7 @@ const page = (p) => `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${p.title} · bickford</title>
 <meta name="description" content="${p.description}">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="canonical" href="https://bickfordd-bit.github.io/bickford-diagnostic/${p.file}">
 <style>${CSS}</style>
 </head>

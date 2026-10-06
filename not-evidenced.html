@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What "Not evidenced" means in an AI governance review · bickford</title>
+<meta name="description" content="In an AI governance review, "Not evidenced" means the records did not show a control, not that the control is absent. Why examiners treat it the same as a gap, and how to turn it into a pass.">
+<link rel="canonical" href="https://bickfordd-bit.github.io/bickford-diagnostic/not-evidenced.html">
+<style>
+  :root { --bg: #ffffff; --text: #14202b; --muted: #4c5a67; --line: #dde3e8; --accent: #1f4e79; --soft: #f2f6f9; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0f161c; --text: #e8eef3; --muted: #a8b6c2; --line: #26323c; --accent: #7fb3e0; --soft: #16212a; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; }
+  a { color: var(--accent); }
+  .brand { font-weight: 700; color: var(--accent); text-decoration: none; }
+  h1 { font-size: clamp(28px, 5.5vw, 38px); line-height: 1.2; margin: 18px 0 12px; }
+  h2 { font-size: 21px; margin: 36px 0 10px; }
+  p.lead { font-size: 18px; color: var(--muted); }
+  ol li, ul li { margin: 8px 0; }
+  blockquote { margin: 12px 0; padding: 12px 16px; background: var(--soft); border-left: 3px solid var(--accent); border-radius: 6px; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; background: var(--soft); }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  code, pre { font-family: ui-monospace, Consolas, Menlo, monospace; font-size: 14px; }
+  pre { background: var(--soft); padding: 12px; border-radius: 8px; overflow-x: auto; }
+  small, footer { color: var(--muted); }
+  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="index.html">bickford</a>
+  <h1>What "Not evidenced" means, and why it is scored like a gap</h1>
+  <p class="lead">Every check in an evidence review ends in one of four states: pass, partial, gap, or not evidenced. The last one surprises people. Here is what it means and why it costs you the same as a gap.</p>
+
+  <h2>The four outcomes</h2>
+  <table>
+    <tr><th>Outcome</th><th>Meaning</th><th>Example</th></tr>
+    <tr><td>Pass</td><td>The records show the control working at or above threshold</td><td>A model version is recorded on 99.9% of decisions</td></tr>
+    <tr><td>Partial</td><td>The records show it, below the pass threshold</td><td>A reviewer is recorded on 87% of the decisions the review rule covers</td></tr>
+    <tr><td>Gap</td><td>The records show the control is missing or not followed</td><td>Overrides exist and none carries a reason</td></tr>
+    <tr><td>Not evidenced</td><td>Nothing submitted shows the control either way</td><td>No answer about an incident process; no reviewer field in the export</td></tr>
+  </table>
+
+  <h2>Why it is scored like a gap</h2>
+  <p>Because that is how it is treated in the room. An examiner working from Section 4 of <a href="notice-2024-04-checklist.html">Notice 2024-04</a> asks for "documentation of compliance." A control that exists but cannot be shown is, for the purpose of that request, a control that does not exist. The 2026 NAIC examiner draft makes the point structurally: its checklist version "added request to provide document name and page #" for each answer. An answer without a document is not an answer.</p>
+  <p>So in a readiness score, Not evidenced counts against you with the same weight as a Gap. The one difference is in the remediation plan: a Gap needs the control built; Not evidenced often needs only the record produced, which is faster and cheaper, if the control is real.</p>
+
+  <h2>The two ways it happens</h2>
+  <ol>
+    <li><strong>The practice exists; the record does not.</strong> The underwriters do review referrals; the system does not store who reviewed what. The fix is a field, not a policy.</li>
+    <li><strong>The answer was "unknown."</strong> Nobody on the call could say whether the incident process covers model errors. The fix is to find out, then write it down.</li>
+  </ol>
+
+  <h2>Turning it into a pass</h2>
+  <ul>
+    <li>Make the decision record carry the evidence: decision ID, timestamp, model and version, output, score, reviewer, override and reason, reason codes on adverse outcomes. Every one of those is a field an examiner can count.</li>
+    <li>Answer practice questions with the document name, not an adjective. "Yes: AI policy v1.2, approved by the Risk Committee 2026-03-14" is evidence. "Yes, we have a policy" is not.</li>
+    <li>Keep the records tamper-evident, so the evidence survives the question "how do we know nobody changed this?" (See <a href="verify-decision-log.html">how to verify a decision log</a>.)</li>
+  </ul>
+  <p>The <a href="index.html">Evidence Pack</a> uses exactly this scale: 24 checks, 9 measured from your logs and 15 from your answers, each ending in pass, partial, gap or not evidenced, with the record or the missing record named.</p>
+  <h2>Related</h2>
+  <ul>
+    <li><a href="notice-2024-04-checklist.html">Pennsylvania Insurance Notice 2024-04: the AI documentation checklist</a></li>
+    <li><a href="naic-ai-model-bulletin.html">The NAIC AI Model Bulletin: what it expects insurers to keep</a></li>
+    <li><a href="verify-decision-log.html">How to verify an AI decision log, and prove nobody edited it</a></li>
+    <li><a href="index.html">The AI Workflow Evidence Pack</a>: find out which of these you can evidence today, from one decision-log export.</li>
+  </ul>
+  <footer>
+    Bickford Technologies · Philadelphia, PA · <a href="mailto:bickfordd@gmail.com">bickfordd@gmail.com</a><br>
+    A summary for orientation, not legal advice. Sources checked October 3, 2026; read the documents themselves for their exact terms.
+  </footer>
+</main>
+</body>
+</html>

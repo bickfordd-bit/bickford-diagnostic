@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to verify an AI decision log · bickford</title>
+<meta name="description" content="How a hash-chained decision log works, how an examiner can verify an exported log with a 40-line script, and why that answers "prove nobody edited it" without trusting the system that wrote it.">
+<link rel="canonical" href="https://bickfordd-bit.github.io/bickford-diagnostic/verify-decision-log.html">
+<style>
+  :root { --bg: #ffffff; --text: #14202b; --muted: #4c5a67; --line: #dde3e8; --accent: #1f4e79; --soft: #f2f6f9; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0f161c; --text: #e8eef3; --muted: #a8b6c2; --line: #26323c; --accent: #7fb3e0; --soft: #16212a; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; }
+  a { color: var(--accent); }
+  .brand { font-weight: 700; color: var(--accent); text-decoration: none; }
+  h1 { font-size: clamp(28px, 5.5vw, 38px); line-height: 1.2; margin: 18px 0 12px; }
+  h2 { font-size: 21px; margin: 36px 0 10px; }
+  p.lead { font-size: 18px; color: var(--muted); }
+  ol li, ul li { margin: 8px 0; }
+  blockquote { margin: 12px 0; padding: 12px 16px; background: var(--soft); border-left: 3px solid var(--accent); border-radius: 6px; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; background: var(--soft); }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  code, pre { font-family: ui-monospace, Consolas, Menlo, monospace; font-size: 14px; }
+  pre { background: var(--soft); padding: 12px; border-radius: 8px; overflow-x: auto; }
+  small, footer { color: var(--muted); }
+  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="index.html">bickford</a>
+  <h1>How to verify an AI decision log, and prove nobody edited it</h1>
+  <p class="lead">The question behind every AI records request is "show me the decisions, and prove nobody edited them." A hash chain answers the second half with a plain file and a script anyone can read.</p>
+
+  <h2>The problem with ordinary audit logs</h2>
+  <p>A database audit log is kept by the same people who run the model. When an examiner asks whether the decision records are complete and unaltered, "we have an audit table" asks them to trust the system under review. The NAIC's 2026 examiner draft asks for a model's "last date of model testing" and whether "there is a human in the loop"; both are claims about records, and records are only evidence if a third party can check them.</p>
+
+  <h2>How a hash chain works</h2>
+  <p>Each decision is written as one line of JSON with four parts: the hash of the previous line, the timestamp, the decision itself, and a SHA-256 hash of those three. Because every hash covers the previous hash, changing, deleting or reordering any record changes every hash after it. The first record points at sixty-four zeros.</p>
+  <pre>{"prev_hash":"000…000","timestamp":"2026-01-01T09:00:00Z","entry":{"decision_id":"D-0001","model_version":"2.3.0","output":"approve","score":0.37},"hash":"652014cf…"}
+{"prev_hash":"652014cf…","timestamp":"2026-01-02T09:01:00Z","entry":{"decision_id":"D-0002",…},"hash":"9b24eccd…"}</pre>
+  <p>The export is a text file. Anyone holding a copy, an examiner, an auditor, a reinsurer, can recompute the chain and compare the final hash ("the head") with the one they were given. If the two match, the file is the file. No access to the insurer's systems is needed.</p>
+
+  <h2>Verifying one yourself</h2>
+  <p>Two verifiers, about forty lines each, with no dependencies, are published at <a href="https://github.com/bickfordd-bit/decision-ledger">github.com/bickfordd-bit/decision-ledger</a> under the MIT license:</p>
+  <pre>node verify.mjs ledger.jsonl      # OK: 1231 records, head 04441e32…
+python verify.py ledger.jsonl     # same answer, standard library only</pre>
+  <p>Both report the first record that fails and why: <code>prev_hash does not match the previous record</code> (a record was removed, inserted or reordered) or <code>hash does not match the record content</code> (a record was edited). The repository includes a 50-record sample ledger and the tests that show both verifiers agree byte for byte.</p>
+
+  <h2>What it proves, and what it does not</h2>
+  <ul>
+    <li><strong>Proves:</strong> that the records in the export have not been altered since the head hash was recorded. Record the head somewhere the writer cannot change (an email to the auditor, a board minute, a signed PDF) and the proof is complete.</li>
+    <li><strong>Does not prove:</strong> who wrote the records, or that the model's decision was correct. Signatures answer the first; validation and testing answer the second. The chain answers the question examiners ask most: is this what happened?</li>
+  </ul>
+
+  <h2>Which framework controls a verified log evidences</h2>
+  <p>The same repository maps a decision log's fields to the controls they can evidence: ISO/IEC 42001 A.6.2.8 (event logging) and 7.5 (documented information), NIST AI RMF MEASURE 2.8 and MAP 3.5, and EU AI Act Articles 12 (record-keeping), 14 (human oversight) and 26 (deployer obligations). Only control IDs and one-line paraphrases are given; standard text is licensed.</p>
+  <p>The <a href="index.html">Evidence Pack</a> replays your exported log into exactly this kind of chain and returns it to you, with the head hash printed in the report, so the report and the records can be checked by someone who did not buy it.</p>
+  <h2>Related</h2>
+  <ul>
+    <li><a href="notice-2024-04-checklist.html">Pennsylvania Insurance Notice 2024-04: the AI documentation checklist</a></li>
+    <li><a href="naic-ai-model-bulletin.html">The NAIC AI Model Bulletin: what it expects insurers to keep</a></li>
+    <li><a href="not-evidenced.html">What "Not evidenced" means, and why it is scored like a gap</a></li>
+    <li><a href="index.html">The AI Workflow Evidence Pack</a>: find out which of these you can evidence today, from one decision-log export.</li>
+  </ul>
+  <footer>
+    Bickford Technologies · Philadelphia, PA · <a href="mailto:bickfordd@gmail.com">bickfordd@gmail.com</a><br>
+    A summary for orientation, not legal advice. Sources checked October 3, 2026; read the documents themselves for their exact terms.
+  </footer>
+</main>
+</body>
+</html>

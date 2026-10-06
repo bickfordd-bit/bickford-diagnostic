@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The NAIC AI Model Bulletin, explained for insurers · bickford</title>
+<meta name="description" content="The NAIC Model Bulletin on insurers' use of AI systems (December 2023): the written AIS program it expects, the four sections, which states adopted it, and the 2026 examiner evaluation tool that follows it.">
+<link rel="canonical" href="https://bickfordd-bit.github.io/bickford-diagnostic/naic-ai-model-bulletin.html">
+<style>
+  :root { --bg: #ffffff; --text: #14202b; --muted: #4c5a67; --line: #dde3e8; --accent: #1f4e79; --soft: #f2f6f9; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0f161c; --text: #e8eef3; --muted: #a8b6c2; --line: #26323c; --accent: #7fb3e0; --soft: #16212a; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; }
+  a { color: var(--accent); }
+  .brand { font-weight: 700; color: var(--accent); text-decoration: none; }
+  h1 { font-size: clamp(28px, 5.5vw, 38px); line-height: 1.2; margin: 18px 0 12px; }
+  h2 { font-size: 21px; margin: 36px 0 10px; }
+  p.lead { font-size: 18px; color: var(--muted); }
+  ol li, ul li { margin: 8px 0; }
+  blockquote { margin: 12px 0; padding: 12px 16px; background: var(--soft); border-left: 3px solid var(--accent); border-radius: 6px; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; background: var(--soft); }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  code, pre { font-family: ui-monospace, Consolas, Menlo, monospace; font-size: 14px; }
+  pre { background: var(--soft); padding: 12px; border-radius: 8px; overflow-x: auto; }
+  small, footer { color: var(--muted); }
+  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="index.html">bickford</a>
+  <h1>The NAIC AI Model Bulletin: what it expects insurers to keep</h1>
+  <p class="lead">Adopted by the NAIC on December 4, 2023 and, as of August 31, 2026, by 25 states and the District of Columbia. Here is what it expects, what it does not, and what examiners are now piloting on top of it.</p>
+
+  <h2>The core expectation, in the Bulletin's words</h2>
+  <blockquote>"all Insurers authorized to do business in this state are expected to develop, implement, and maintain a written program (an "AIS Program") for the responsible use of AI Systems that make, or support decisions related to regulated insurance practices."</blockquote>
+  <p>The program "should address governance, risk management controls, and internal audit functions," with senior management "accountable to the board or an appropriate committee of the board," proportionate to the insurer's use of AI, covering the whole insurance life cycle and the whole AI life cycle, including systems "developed by the insurer or embedded within an affiliate or third-party vendor process." It may sit inside enterprise risk management and "may adopt, incorporate or rely upon" the NIST AI Risk Management Framework 1.0.</p>
+
+  <h2>The four sections of an AIS program</h2>
+  <table>
+    <tr><th>Section</th><th>What it covers</th><th>What an examiner would ask to see</th></tr>
+    <tr><td>1. General</td><td>Purpose (mitigating adverse consumer outcomes), accountability, proportionality, scope, consumer notice that AI is in use</td><td>The written program and evidence of its adoption</td></tr>
+    <tr><td>2. Governance</td><td>Life-cycle policies; documentation requirements "developed with Section 4 in mind"; committees and chains of command; "monitoring, auditing, escalation, and reporting protocols"; training</td><td>Minutes, org charts, escalation records, training records</td></tr>
+    <tr><td>3. Risk management and internal controls</td><td>Approvals; data practices (currency, lineage, quality, integrity, bias analysis, suitability); model "inventories and descriptions"; "detailed documentation of the development and use"; assessments including "model drift, and the auditability of these measurements"; validation and retesting; nonpublic information; "data and record retention"</td><td>The inventory, per-model documentation, test results with dates, retention policy, the decision records themselves</td></tr>
+    <tr><td>4. Third-party AI systems and data</td><td>Due diligence; contract terms for "audit rights and/or ... audit reports by qualified auditing entities" and cooperation with regulators; exercising those rights</td><td>Diligence files, contracts, SOC 2 or equivalent reports covering the AI</td></tr>
+  </table>
+
+  <h2>What it does not do</h2>
+  <p>"The goal of the bulletin is not to prescribe specific practices or to prescribe specific documentation requirements." It creates no new law; it tells insurers what regulators expect under existing unfair-trade-practice, claims-settlement, corporate-governance and examination laws, and what they may ask for. States adopt it as a bulletin or notice (Pennsylvania's is <a href="notice-2024-04-checklist.html">Notice 2024-04</a>, nearly word for word).</p>
+
+  <h2>What is happening in 2026</h2>
+  <ul>
+    <li>Twelve states, Pennsylvania among them, piloted the NAIC's <em>AI Systems Evaluation Tool</em>, a set of optional exhibits for examiners, in market conduct exams, financial analysis and financial exams from March to September 2026, "focusing on using the Tool with domestic insurers."</li>
+    <li>The NAIC Big Data and Artificial Intelligence (H) Working Group then exposed the <em>AI Risk Evaluation Supplement v5.0</em>, with the same four-exhibit structure, for comment through September 29, 2026. Exhibit A counts systems and asks for a model inventory with an "Inherent Risk Level"; Exhibit B asks for the AIS program and "whether there is a human in the loop"; Exhibit C asks, per high-risk model, for the "AI model name and version number" and the "last date of model testing"; Exhibit D asks for data sources including vendor names.</li>
+    <li>The draft states plainly that ordinary rating models are in scope: "GLMs are not without risk of causing unfair discrimination or other adverse consumer outcomes and require effective governance."</li>
+    <li>The March pilot plan was to consider an updated tool for adoption at the Fall National Meeting, November 14–17, 2026. A plan, not a decision.</li>
+  </ul>
+
+  <h2>Sources</h2>
+  <ul>
+    <li>NAIC Model Bulletin (PDF): <a href="https://content.naic.org/sites/default/files/cmte-h-big-data-artificial-intelligence-wg-ai-model-bulletin.pdf.pdf">naic.org</a></li>
+    <li>Big Data and Artificial Intelligence (H) Working Group, with the v5.0 draft and the Evaluation Tool 4.0: <a href="https://content.naic.org/committees/h/big-data-artificial-intelligence-wg">naic.org</a></li>
+    <li>Pilot Project Summary, March 2, 2026: <a href="https://content.naic.org/sites/default/files/inline-files/Pilot%20Project%20Summary_1.pdf">naic.org</a></li>
+  </ul>
+  <h2>Related</h2>
+  <ul>
+    <li><a href="notice-2024-04-checklist.html">Pennsylvania Insurance Notice 2024-04: the AI documentation checklist</a></li>
+    <li><a href="not-evidenced.html">What "Not evidenced" means, and why it is scored like a gap</a></li>
+    <li><a href="verify-decision-log.html">How to verify an AI decision log, and prove nobody edited it</a></li>
+    <li><a href="index.html">The AI Workflow Evidence Pack</a>: find out which of these you can evidence today, from one decision-log export.</li>
+  </ul>
+  <footer>
+    Bickford Technologies · Philadelphia, PA · <a href="mailto:bickfordd@gmail.com">bickfordd@gmail.com</a><br>
+    A summary for orientation, not legal advice. Sources checked October 3, 2026; read the documents themselves for their exact terms.
+  </footer>
+</main>
+</body>
+</html>

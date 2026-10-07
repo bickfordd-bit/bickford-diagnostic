@@ -64,6 +64,61 @@ ${p.body}
 
 const PAGES = [
   {
+    file: 'states-adopted-naic-ai-bulletin.html',
+    title: 'Which states have adopted the NAIC AI bulletin',
+    h1: 'Which states have adopted the NAIC AI Model Bulletin, with bulletin numbers and dates',
+    description: "The 25 states and the District of Columbia that have adopted the NAIC Model Bulletin on insurers' use of AI systems, each with its bulletin number and adoption date, plus the four states with their own AI insurance rules. Source: NAIC adoption map, August 31, 2026.",
+    lead: "If your company is licensed in any state below, that state's regulator expects a written AI systems program and may ask for its documentation. Twenty-five states and the District of Columbia had adopted the NAIC Model Bulletin as of August 31, 2026; four more states regulate AI in insurance under rules of their own.",
+    body: `
+  <h2>Adopting states</h2>
+  <table>
+    <tr><th>State</th><th>Instrument</th><th>Adopted</th></tr>
+    <tr><td>Alaska</td><td>Bulletin B 24-01</td><td>February 1, 2024</td></tr>
+    <tr><td>Arkansas</td><td>Bulletin 13-2024</td><td>July 31, 2024</td></tr>
+    <tr><td>Connecticut</td><td>Bulletin No. MC-25</td><td>February 26, 2024</td></tr>
+    <tr><td>Delaware</td><td>Domestic and Foreign Bulletin No. 148</td><td>February 5, 2025</td></tr>
+    <tr><td>District of Columbia</td><td>Bulletin 24-IB-002-05/21</td><td>May 21, 2024</td></tr>
+    <tr><td>Hawaii</td><td>Insurance Commissioner Memorandum No. 2025-13A</td><td>December 10, 2025</td></tr>
+    <tr><td>Illinois</td><td>Company Bulletin 2024-08</td><td>March 13, 2024</td></tr>
+    <tr><td>Iowa</td><td>Insurance Division Bulletin 24-04</td><td>November 7, 2024</td></tr>
+    <tr><td>Kentucky</td><td>Bulletin No. 2024-02</td><td>April 16, 2024</td></tr>
+    <tr><td>Maryland</td><td>Bulletin No. 24-11</td><td>April 22, 2024</td></tr>
+    <tr><td>Massachusetts</td><td>Bulletin No. 2024-10</td><td>December 9, 2024</td></tr>
+    <tr><td>Michigan</td><td>Bulletin 2024-20-INS</td><td>August 7, 2024</td></tr>
+    <tr><td>Mississippi</td><td>Bulletin 2026-9</td><td>July 22, 2026</td></tr>
+    <tr><td>Nebraska</td><td>Insurance Guidance Document No. IGD-H1</td><td>issued June 11, 2024</td></tr>
+    <tr><td>Nevada</td><td>Bulletin 24-001</td><td>February 23, 2024</td></tr>
+    <tr><td>New Hampshire</td><td>Bulletin Docket #INS 24-011-AB</td><td>February 20, 2024</td></tr>
+    <tr><td>New Jersey</td><td>Insurance Bulletin No. 25-03</td><td>February 11, 2025</td></tr>
+    <tr><td>North Carolina</td><td>Bulletin No. 24-B-19</td><td>December 18, 2024</td></tr>
+    <tr><td>Oklahoma</td><td>Bulletin No. 2024-11</td><td>November 14, 2024</td></tr>
+    <tr><td>Pennsylvania</td><td>Insurance Notice 2024-04, 54 Pa.B. 1910</td><td>April 6, 2024</td></tr>
+    <tr><td>Rhode Island</td><td>Insurance Bulletin No. 2024-03</td><td>March 15, 2024</td></tr>
+    <tr><td>Vermont</td><td>Insurance Bulletin No. 229</td><td>March 12, 2024</td></tr>
+    <tr><td>Virginia</td><td>Administrative Letter 2024-01</td><td>July 22, 2024</td></tr>
+    <tr><td>Washington</td><td>Technical Assistance Advisory 2024-02</td><td>April 22, 2024</td></tr>
+    <tr><td>West Virginia</td><td>Insurance Bulletin No. 24-06</td><td>August 9, 2024</td></tr>
+    <tr><td>Wisconsin</td><td>Insurance Bulletin</td><td>March 18, 2025</td></tr>
+  </table>
+  <p>Pennsylvania's version is the one this site covers in detail: <a href="notice-2024-04-checklist.html">the Notice 2024-04 documentation checklist</a>. Wisconsin's bulletin carries no number on the NAIC map. Nebraska issued guidance rather than a bulletin.</p>
+
+  <h2>States with their own AI rules instead</h2>
+  <table>
+    <tr><th>State</th><th>Instrument</th><th>Issued</th></tr>
+    <tr><td>California</td><td>Bulletin 2022-5</td><td>June 30, 2022</td></tr>
+    <tr><td>Colorado</td><td>3 CCR 702-10 (amended effective October 15, 2025)</td><td>effective November 13, 2023</td></tr>
+    <tr><td>New York</td><td>Insurance Circular Letter No. 7</td><td>July 11, 2024</td></tr>
+    <tr><td>Texas</td><td>Bulletin B-0036-20</td><td>September 30, 2020</td></tr>
+  </table>
+
+  <h2>What adoption means in practice</h2>
+  <p>Each adopting state's instrument tracks the <a href="naic-ai-model-bulletin.html">NAIC Model Bulletin</a>: insurers that use AI systems, including AI embedded in vendor rating, claims or fraud tools, are expected to keep a written AI systems program covering governance, risk management and internal audit, and can be asked for that program and its documentation in an examination. The wording is "expected" and "may request"; the bulletins say they create no new requirements. Twelve of these states piloted the NAIC's examiner evaluation tool from March to September 2026.</p>
+  <p>A company licensed in several of these states answers the same questions once; the documentation list is the same list. The <a href="index.html">Evidence Pack</a> scores it in one pass.</p>
+
+  <h2>Source</h2>
+  <ul><li>NAIC, "Implementation of NAIC Model Bulletin: Use of Artificial Intelligence Systems by Insurers," status as of August 31, 2026 (PDF): <a href="https://content.naic.org/sites/default/files/legal-adoption-map-ai-model-bulletin.pdf">content.naic.org</a>. Read October 6, 2026.</li></ul>`,
+  },
+  {
     file: 'notice-2024-04-checklist.html',
     title: 'Pennsylvania Insurance Notice 2024-04: the AI documentation checklist',
     h1: 'Pennsylvania Insurance Notice 2024-04: the AI documentation checklist',
